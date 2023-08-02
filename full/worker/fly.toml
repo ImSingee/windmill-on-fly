@@ -1,0 +1,21 @@
+# fly.toml app configuration file generated for xxx-windmill-worker on 2023-08-02T21:33:35+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "xxx-windmill-worker"
+primary_region = "sea"
+
+[build]
+  image = "ghcr.io/windmill-labs/windmill:latest"
+
+[env]
+  BASE_URL = "https://xxx-windmill-server.fly.dev/"
+  DISABLE_SERVER = "true"
+  KEEP_JOB_DIR = "false"
+  NUM_WORKERS = "4"
+  RUST_LOG = "info"
+
+[[mounts]]
+  source = "worker_cache"
+  destination = "/tmp/windmill/cache"
